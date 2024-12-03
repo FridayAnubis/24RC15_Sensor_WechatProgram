@@ -1,0 +1,124 @@
+<view class="container">
+  <view class="head_box" style="height: 266rpx; display: block; box-sizing: border-box">
+    <image style="position: relative; left: 93rpx; top: 0rpx" src="/images/apps-arduino.512x512.png" mode="" />
+    <view style="position: relative; left: 266rpx; top: -118rpx">{{title}}</view>
+  </view>
+
+  <view class="otherSystem" style="height: 120rpx">
+    <view style="display: flex; justify-content: space-between;">
+      <view class="flex">
+        <image src="/images/bluetooth.png" style="width: 70rpx; margin: 20rpx 20rpx 0 0" mode="widthFix" />
+      </view>
+      <view>Bluetooth</view>
+      <view>
+        <switch checked="{{isBluetooth}}" color="#97baff" bindchange="bluetoothChange" />
+      </view>
+    </view>
+  </view>
+
+  <!-- mqtt连接 -->
+  <view class="mqtt_box" bind:tap="openDialog" wx:if="{{!isBluetooth}}">
+    <view>
+      <van-icon wx:if="{{!mqttContentDialog}}" name="arrow-down" />
+      <van-icon wx:if="{{mqttContentDialog}}" name="arrow-up" />
+      MQTT Server
+    </view>
+    <view style="color:{{isConnect?'RGB(0,176,80)':'RGB(192,0,0)'}}">
+      {{isConnect?'Connected':'Disconnected'}}
+    </view>
+  </view>
+  <!-- 蓝牙连接 -->
+  <view class="mqtt_box" bind:tap="openBluetoothDialog" wx:else>
+    <view>
+      <van-icon wx:if="{{!bluetoothDialog}}" name="arrow-down" />
+      <van-icon wx:if="{{bluetoothDialog}}" name="arrow-up" />
+      Bluetooth
+    </view>
+    <view style="color:{{isBluetoothConnect?'RGB(0,176,80)':'RGB(192,0,0)'}}">
+      {{isBluetoothConnect?'Connected':'Disconnected'}}
+    </view>
+  </view>
+  <view class="sensorSystemTitle">
+    Sensors
+  </view>
+  <view class="sensorSystem">
+    <view wx:for="{{sensorList}}" class="systemInfo" bind:tap="toChart">
+      <view class="sensorSystemBox1">
+        <image src="{{item.img}}" style="height: 80rpx;" mode="widthFix" />
+      </view>
+      <view class="sensorSystemBox2">
+        <view>{{item.parameter}}</view>
+        <view style="font-size: 25rpx;">{{item.value}}{{item.unit}}</view>
+        <view>{{item.name}}</view>
+      </view>
+      <!-- <view class="sensorSystemBox3">!</view> -->
+    </view>
+    <view wx:for="{{anotherList}}" class="anotherSystemInfo" bind:tap="toChart">
+      <view class="sensorSystemBox1">
+        <image src="{{item.img}}" style="height: 80rpx;" mode="widthFix" />
+      </view>
+      <view class="sensorSystemBox2">
+        <view>{{item.parameter}}</view>
+        <view style="font-size: 25rpx;">{{item.value}}{{item.unit}}</view>
+        <view style="margin-top: 10rpx;">{{item.name}}</view>
+      </view>
+      <!-- <view class="sensorSystemBox3">!</view> -->
+    </view>
+  </view>
+  <view class="sensorSystem">
+    Other
+  </view>
+
+  <view class="otherSystem" style="height: 120rpx">
+    <view style="display: flex; justify-content: space-between;">
+      <view class="flex">
+        <image src="/images/speaker-filled-audio-tool.png" style="width: 70rpx; margin: 25rpx 20rpx 0 0" mode="widthFix" />
+      </view>
+      <view>Audio</view>
+      <view>
+        <switch checked="" color="#97baff" bindchange="" />
+      </view>
+    </view>
+  </view>
+  <view class="otherSystem" style="height: 120rpx">
+    <view style="display: flex; justify-content: space-between;">
+      <view class="flex">
+        <image src="/images/knee.png" style="width: 70rpx; margin: 25rpx 20rpx 0 0" mode="widthFix" />
+      </view>
+      <view>Resistance</view>
+      <view>
+        <switch checked="" color="#97baff" bindchange="" />
+      </view>
+    </view>
+  </view>
+  <!-- <view class="otherSystem">
+    <view wx:for="{{otherSystemList}}" style="height: {{item.name == 160}};">
+      11
+    </view>
+  </view> -->
+
+</view>
+
+
+<van-popup show="{{ mqttContentDialog }}" bind:close="onClose" position="bottom" round custom-style="height: 60%;">
+  <view>
+    <van-cell-group>
+      <van-field disabled="{{isConnect}}" model:value="{{address}}" clearable label="address" placeholder="请输入地址" bind:click-icon="onClickIcon" />
+      <van-field disabled="{{isConnect}}" model:value="{{ port }}" type="number" clearable label="port" placeholder="请输入端口号" bind:click-icon="onClickIcon" />
+      <van-field disabled="{{isConnect}}" model:value="{{ username }}" clearable label="username" placeholder="请输入用户名" bind:click-icon="onClickIcon" />
+      <van-field disabled="{{isConnect}}" model:value="{{ password }}" type="password" label="password" placeholder="请输入密码" />
+    </van-cell-group>
+    <view class="btn_style">
+      <van-button color="#96baff" type="primary">连接</van-button>
+      <van-button color="#d9d9d9" type="primary">断开</van-button>
+    </view>
+    <van-cell-group>
+      <van-field disabled="{{isConnect}}" model:value="{{address}}" clearable label="address" placeholder="请输入地址" bind:click-icon="onClickIcon" />
+      <van-field disabled="{{isConnect}}" model:value="{{ port }}" type="number" clearable label="port" placeholder="请输入端口号" bind:click-icon="onClickIcon" />
+    </van-cell-group>
+  </view>
+</van-popup>
+
+<van-popup show="{{ bluetoothDialog }}" bind:close="onCloseBluetooth" position="bottom" round custom-style="height: 60%;">
+  <bluetooth-comp bind:DataReceived="handleDataReceived" bind:BluetoothStatusChange="handleBluetoothStatusChange" bind:GPSDataReceived="onGPSDataReceived"></bluetooth-comp>
+</van-popup>

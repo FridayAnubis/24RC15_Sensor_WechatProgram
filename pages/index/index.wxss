@@ -1,0 +1,89 @@
+.head_box{
+  padding-top: 120rpx;
+}
+.head_box > image{
+  width: 120rpx;
+  height: 120rpx;
+}
+.head_box > view{
+  font-size: 38rpx;
+  font-weight: 600;
+  line-height: 100rpx;
+}
+.mqtt_box {
+  display: flex;
+  padding: 0 40rpx;
+  justify-content: space-between;
+  height: 120rpx;
+  margin: 38rpx 32rpx 0;
+  box-shadow: 0 8rpx 20rpx 0 rgba(0, 0, 0, 0.3);
+  border-radius: 32rpx;
+  font-size: 40rpx;
+  line-height: 120rpx;
+  background-color: white;
+}
+.btn_style {
+  margin:40rpx 0;
+  display: flex;
+  justify-content: space-around;
+}
+.van-button,
+.van-button--default,
+.van-button--small {
+  width: 250rpx;
+}
+.sensorSystemTitle {
+  margin: 32rpx 0 32rpx 34rpx;
+}
+.sensorSystem {
+  margin: 0 0 10rpx 34rpx;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.systemInfo {
+  display: flex;
+  width: 330rpx;
+  height: 252rpx;
+  box-shadow: 0 8rpx 20rpx 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  border-radius: 32rpx;
+  margin: 0 23rpx 23rpx 0;
+}
+.anotherSystemInfo {
+  display: flex;
+  width: 330rpx;
+  height: 195rpx;
+  box-shadow: 0 8rpx 20rpx 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  border-radius: 32rpx;
+  margin: 0 23rpx 23rpx 0;
+}
+.sensorSystemBox1 {
+  margin-right: 15rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80rpx;
+}
+.sensorSystemBox2 >view {
+  white-space: pre-wrap;
+  margin-top: 19rpx;
+  width: 220rpx;
+}
+.sensorSystemBox3 {
+  color: red;
+  font-size: 65rpx;
+  font-weight: 600;
+  line-height: 252rpx;
+}
+
+.otherSystem {
+  padding: 0 40rpx;
+  margin: 38rpx 32rpx 0;
+  box-shadow: 0 8rpx 20rpx 0 rgba(0, 0, 0, 0.3);
+  border-radius: 32rpx;
+  font-size: 40rpx;
+  line-height: 120rpx;
+  background-color: white;
+}

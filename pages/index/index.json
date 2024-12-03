@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "bluetooth-comp":"/components/bluetooth-comp"
+  }
+}
